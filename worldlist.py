@@ -52,10 +52,24 @@ def web_scraping_bot(urls):
             print("HTTP request error!!")
     return eng_words
 
+def save_to_csv(word, file):
+    with open(file, "w+", newline="", encoding="utf-8") as fp:
+        writer = csv.writer(fp)
+        for word in words:
+            writer.writerow(word)
+
 if __name__ == "__main__":
     urlx = generate_urls(URL, 1, 3)
     eng_words = web_scraping_bot(urlx)
-    print(eng_words)
+    for item in eng_words:
+        print(item)
+    save_to_csv(eng_words, "engWordList 1.csv") 
+
+
+#if __name__ == "__main__":
+    #urlx = generate_urls(URL, 1, 3)
+    #eng_words = web_scraping_bot(urlx)
+    #print(eng_words)
     #for url in urls:
         #file = url.split("/")[-1]
         #print("catching: ", file, "web data...")
