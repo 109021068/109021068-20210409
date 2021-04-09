@@ -41,7 +41,7 @@ def web_scraping_bot(urls):
     eng_words = []
     for url in urls:
         file = url.split("/")[-1]
-        print("catching: ", file, "web data...")
+        print("catching: ", file, " web data...")
         r = get_resource(url)
         if r.status_code == requests.codes.ok:
             soup = parse_html(r.text)
@@ -53,14 +53,14 @@ def web_scraping_bot(urls):
             print("HTTP request error!!")
     return eng_words
 
-def save_to_csv(word, file):
+def save_to_csv(words, file):
     with open(file, "w+", newline="", encoding="utf-8") as fp:
         writer = csv.writer(fp)
         for word in words:
             writer.writerow(word)
 
 if __name__ == "__main__":
-    urlx = generate_urls(URL, 1, 3)
+    urlx = generate_urls(URL, 1, 11)
     eng_words = web_scraping_bot(urlx)
     for item in eng_words:
         print(item)
